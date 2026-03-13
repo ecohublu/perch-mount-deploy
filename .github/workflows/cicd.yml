@@ -26,6 +26,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare runtime files
+        run: |
+          cp /home/farewell/deploy-runtime/perch-mount/.env .env
+          mkdir -p secrets
+          cp /home/farewell/deploy-runtime/perch-mount/secrets/flask_secret secrets/flask_secret
+          cp /home/farewell/deploy-runtime/perch-mount/secrets/jwt_secret secrets/jwt_secret
+
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
