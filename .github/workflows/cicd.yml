@@ -41,7 +41,10 @@ jobs:
           password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Pull latest images
-        run: docker compose --env-file .env -f docker-compose.deploy.yml pull
+        run: docker compose --env-file .env -f docker-compose.deploy.yml pull frontend backend redis
+
+      - name: Build PostgreSQL image with pg_cron
+        run: docker compose --env-file .env -f docker-compose.deploy.yml build postgres
 
       - name: Start infrastructure services
         run: docker compose --env-file .env -f docker-compose.deploy.yml up -d postgres redis
