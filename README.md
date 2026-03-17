@@ -2,6 +2,8 @@
 
 This directory is the minimum viable deployment repository for the Perch Mount system.
 
+For the full deployment, WSL layout, and CI/CD workflow guide, see [DEPLOYMENT_WORKFLOW.md](DEPLOYMENT_WORKFLOW.md).
+
 ## Purpose
 
 - Keep deployment configuration separate from frontend and backend application code
@@ -14,6 +16,23 @@ This directory is the minimum viable deployment repository for the Perch Mount s
 - `perch-mount-frontend-2`
 - `perch-mount-system`
 - `perch-mount-deploy`
+
+## Branch Flow
+
+- `dev` is the integration branch for deployment and infrastructure changes.
+- `main` is the release branch used by the deployment workflow.
+
+## Recommended Workflow
+
+1. Create an issue for each deployment or infrastructure task.
+2. Create a feature or fix branch from `dev`.
+3. Open a pull request back to `dev`.
+4. After validation, merge `dev` into `main` to trigger release deployment.
+
+## Hotfix Rule
+
+- If production deployment is blocked, a maintainer may patch `main` directly.
+- Every deploy hotfix pushed to `main` must be synced back to `dev`.
 
 ## First-Time Setup
 
